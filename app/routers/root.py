@@ -6,7 +6,6 @@ from pydantic import BaseModel
 
 router = APIRouter()
 
-
 fake_users_db = {
     "johndoe": {
         "username": "johndoe",
@@ -29,8 +28,6 @@ def fake_hash_password(password: str):
     return "fakehashed" + password
 
 
-
-
 class User(BaseModel):
     username: str
     email: Union[str, None] = None
@@ -40,8 +37,6 @@ class User(BaseModel):
 
 class UserInDB(User):
     hashed_password: str
-
-
 
 
 @router.post("/token")
@@ -56,3 +51,14 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()):
         raise HTTPException(status_code=400, detail="Incorrect username or password")
 
     return {"access_token": user.username, "token_type": "bearer"}
+
+
+@router.get("/echo")
+async def echo(
+        param: str
+):
+    try:
+        return {"message": "success", "data": f"{param}"}
+    except Exception as e:
+        print(e)
+        return {"message": "error", "data": ""}

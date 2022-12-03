@@ -1,7 +1,6 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 
 from app.services.scrape import get_price
-import requests
 
 router = APIRouter()
 
@@ -10,11 +9,13 @@ router = APIRouter()
 async def get_prices(
         product: str
 ) -> dict:
-    flipkart_data, amazon_data = get_price(product)
-
-    data = {
-        'flipkart': flipkart_data,
-        'amazon': amazon_data
-    }
-
-    return {'message': 'success', 'data': data}
+    try:
+        flipkart_data, amazon_data = get_price(product)
+        data = {
+            'flipkart': flipkart_data,
+            'amazon': amazon_data
+        }
+        return {'message': 'success', 'data': data}
+    except Exception as e:
+        print(e)
+        return {'message': 'error', 'data': ''}

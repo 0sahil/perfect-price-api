@@ -1,12 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-# from tortoise.contrib.fastapi import register_tortoise
 
 from app.routers import user, scrape, root
-# from app.utils.config import database_url
-
-
-# from app.services.recording_scheduler import record
 
 
 def create_app():  # App creation
@@ -45,13 +40,5 @@ def create_app():  # App creation
         tags=["scrape"]
     )
 
-    # # Database Registration
-    # register_tortoise(
-    #     app,
-    #     db_url=database_url,
-    #     modules={'models': ['app.database.models']},
-    #     generate_schemas=True,
-    #     add_exception_handlers=True
-    # )
 
     return app
