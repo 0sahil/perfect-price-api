@@ -31,10 +31,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Run the app
-      - name: Run the main app
-        run: |
-          python main.py
+#      # Run the app
+#      - name: Run the main app
+#        run: |
+#          python main.py
 
       # Deploy to Netlify using our dev secrets
       - name: Deploy to netlify
