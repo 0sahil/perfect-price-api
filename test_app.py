@@ -14,6 +14,15 @@ def test_echo():
     assert response.json() == {"message": "success", "data": "test"}
 
 
+def test_echo2():
+    response = client.get(
+        '/echo',
+        params={"param": "test2"},
+    )
+    assert response.status_code == 200
+    assert response.json() == {"message": "success", "data": "test"}
+
+
 def test_scrape():
     response = client.get(
         '/scrape/prices',
