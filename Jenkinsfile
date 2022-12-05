@@ -11,9 +11,18 @@ stages {
 	}
 	}
 
+	stage('Install dependencies') {
+	steps {
+		sh 'python3 -m venv .'
+		sh 'source .venv/bin/activate'
+		sh "pip install -r requirements.txt"
+	}
+	}
+
 	stage('Test') {
 	steps {
-		sh 'python3 test_app.py'
+	    sh 'source .venv/bin/activate'
+		sh 'python test_app.py'
 		input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
 	}
 	}
@@ -22,7 +31,8 @@ stages {
 	{
 	steps {
 		echo "deploying the application"
-		sh "python3 main.py > log.txt 2>&1 &"
+		sh 'source .venv/bin/activate'
+		sh "python main.py > log.txt 2>&1 &"
 	}
 	}
 }
