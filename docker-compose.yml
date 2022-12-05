@@ -1,5 +1,0 @@
-web:
-  build: .
-  container_name: perfect-price
-  ports:
-    - "1234:8080"
