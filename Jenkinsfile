@@ -21,7 +21,6 @@ stages {
 	stage('Test') {
 	steps {
 	    sh 'source venv/bin/activate && pytest'
-		input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
 	}
 	}
 
@@ -29,7 +28,7 @@ stages {
 	{
 	steps {
 		echo "deploying the application"
-		sh 'source venv/bin/activate && python main.py > log.txt 2>&1 &'
+		sh 'source venv/bin/activate && python main.py'
 	}
 	}
 }
@@ -37,7 +36,6 @@ stages {
 post {
 		always {
 			echo 'The pipeline completed'
-			junit allowEmptyResults: true, testResults:'**/test_reports/*.xml'
 		}
 		success {
 			echo "Flask Application Up and running!!"
