@@ -20,7 +20,7 @@ stages {
 
 	stage('Test') {
 	steps {
-	    sh 'source venv/bin/activate && python test_app.py'
+	    sh 'source venv/bin/activate && pytest'
 		input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
 	}
 	}
