@@ -2,23 +2,40 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.expected_conditions import presence_of_element_located
+import time
 
 # connect to google.com
 driver = webdriver.Chrome(options=Options())
 driver.get("https://perfect-price-api-bmeifqpbwa-el.a.run.app/docs")
 
-# find the search input field
-scraping_api = driver.find_element(By.CLASS_NAME, "opblock-summary opblock-summary-get")
-#operations-scrape-get_prices_scrape_prices_get > div > button
 
-# scraping_api = driver.find_element(By.CLASS_NAME, "swagger-ui")
+WebDriverWait(driver, 5).until(presence_of_element_located((By.XPATH, "/html/body/div/div/div[2]/div["
+                                                                      "4]/section/div/span["
+                                                                      "3]/div/div/div/span/div/div/button")))
+time.sleep(2.5)
 
-# type the search string
-# search_field.send_keys("selenium")
-#
-# # send enter key to get the search results!
-# search_field.send_keys(Keys.ENTER)
-print(scraping_api)
+driver.find_element(By.XPATH,
+                    "/html/body/div/div/div[2]/div[4]/section/div/span[3]/div/div/div/span/div/div/button").click()
+time.sleep(2.5)
 
-while(1):
-    pass
+WebDriverWait(driver, 5).until(presence_of_element_located((By.XPATH, "/html/body/div/div/div[2]/div["
+                                                                      "4]/section/div/span["
+                                                                      "3]/div/div/div/span/div/div[2]/div/div[1]/div["
+                                                                      "1]/div[2]/button")))
+driver.find_element(By.XPATH,
+                    "/html/body/div/div/div[2]/div[4]/section/div/span[3]/div/div/div/span/div/div[2]/div/div[1]/div["
+                    "1]/div[2]/button").click()
+time.sleep(2.5)
+
+input_text = driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[4]/section/div/span["
+                                           "3]/div/div/div/span/div/div[2]/div/div[1]/div[2]/div/table/tbody/tr/td["
+                                           "2]/input")
+input_text.send_keys("iphone")
+input_text.send_keys(Keys.RETURN)
+time.sleep(2.5)
+
+driver.find_element(By.XPATH, "/html/body/div/div/div[2]/div[4]/section/div/span["
+                              "3]/div/div/div/span/div/div[2]/div/div[2]/button").click()
+time.sleep(20)
