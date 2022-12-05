@@ -25,7 +25,7 @@ stages {
 	}
 	}
 
-	stage('Deploy')
+	stage('Run app')
 	{
 	steps {
 		echo "deploying the application"
