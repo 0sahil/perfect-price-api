@@ -24,13 +24,6 @@ stages {
 	}
 	}
 
-	stage('Run app')
-	{
-	steps {
-		echo "deploying the application"
-		sh 'source venv/bin/activate && python main.py'
-	}
-	}
 }
 
 post {
@@ -38,7 +31,7 @@ post {
 			echo 'The pipeline completed'
 		}
 		success {
-			echo "Flask Application Up and running!!"
+			echo "Flask Application tested successfully!!"
 		}
 		failure {
 			echo 'Build stage failed'
