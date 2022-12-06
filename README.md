@@ -1,4 +1,4 @@
-# perfect-proce-api
+# perfect-price-api
 
 Perfect-Price API is a flask-driven backend serving routes for interacting with the endpoints which can scrape price
 data from Amazon and Flipkart.
